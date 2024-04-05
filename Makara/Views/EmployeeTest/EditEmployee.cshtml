@@ -1,0 +1,17 @@
+﻿@model StajProje.Controllers.Class1
+@{
+    ViewData["Title"] = "EditEmployee";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>Api ile Personel Guncelleme Sayfasi</h1>
+<form method="post">
+    <label>ID</label>
+    @Html.TextBoxFor(x=>x.ID, new {@class="form-control"})
+    <br />
+    <label>Personel</label>
+    @Html.TextBoxFor(x=>x.Name, new {@class="form-control"})
+    <br />
+    <button class="btn btn-outline-success">Guncelle</button>
+</form>
+

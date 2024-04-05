@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Mail Bülteni Aboneliği</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+<body>
+
+    <div class="tech-btm">
+        
+        <p>Teknoloji, yazılım ve diğer bloglar...</p>
+        <form id="subscriptionForm" method="post">
+            <input type="email" placeholder="Email" required="" name="Mail">
+            <input type="submit" value="Abone Ol">
+        </form>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $("#subscriptionForm").submit(function (event) {
+                event.preventDefault(); // Form gönderimini engelle
+
+                var formData = $(this).serialize(); // Form verilerini al
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Newsletter/SubscribeMail/", // Sunucu tarafındaki işlemi belirt
+                    data: formData,
+                    success: function (response) {
+                        // Başarılı yanıt durumunda pop-up göster
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Başarılı!',
+                            text: 'Abonelik başarıyla kaydedildi!',
+                        });
+                    },
+                    error: function (error) {
+                        // Hata durumunda pop-up göster
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Hata!',
+                            text: 'Abonelik kaydında bir hata oluştu.',
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+
+</body>
+</html>
